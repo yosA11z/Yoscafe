@@ -1,0 +1,673 @@
+/* Estilos Generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    color: #333; /* Color de texto general oscuro */
+}
+
+/* Header y Navegación */
+header {
+    background-color: #b49f7f; /* Blanco */
+    padding: 15px 5%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 80px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000000; /* Rojo principal para los enlaces de navegación */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffffff; /* Rojo más oscuro al pasar el mouse */
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 5%;
+    background: #FFFFFF; /* Fondo blanco para la sección hero */
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    overflow: hidden; /* Para las animaciones */
+    box-sizing: border-box; /* Incluye padding en la altura */
+    position: relative;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+    margin-right: 40px;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeInSlideRight 1s ease-out forwards;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    color: #fffefe; /* Título oscuro */
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    color: #ffffff; /* Texto del párrafo más oscuro */
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #b49f7f; /* Rojo principal */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #990000; /* Rojo más oscuro */
+    transform: translateY(-3px);
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 10000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.8); /* Retraso para que aparezca después del contenido */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: zoomIn 0s ease-out forwards 0s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; /* Evita que interfiera con clicks */
+    
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+    
+}
+
+/* Sections generales */
+.products-section, .history-section, .experiences-section, .thank-you-section {
+    padding: 80px 5%;
+    text-align: center;
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex; /* Usar flexbox para centrar contenido verticalmente */
+    flex-direction: column; /* Apilar elementos verticalmente */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    box-sizing: border-box; /* Incluye padding en la altura */
+}
+
+.products-section {
+    background-color: #E8DCCA; /* Fondo blanco/gris muy claro */
+}
+
+.products-section h2, .history-section h2, .experiences-section h2, .thank-you-section h2 {
+    font-size: 2.5em;
+    color: #333; /* Títulos oscuros */
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+.products-section h2::after, .history-section h2::after, .experiences-section h2::after, .thank-you-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #CC0000; /* Línea de adorno en rojo */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1; /* Permite que la cuadrícula ocupe el espacio disponible */
+    align-items: center; /* Centra las tarjetas si hay espacio extra */
+    padding-bottom: 20px; /* Pequeño padding para no pegar al borde inferior */
+}
+
+.product-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 100 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Para la animación */
+    transform: translateY(20px); /* Para la animación */
+}
+
+.product-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-item img {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.product-item h3 {
+    font-size: 1.5em;
+    color: #333; /* Títulos de producto oscuros */
+    margin-bottom: 10px;
+}
+
+.product-item p {
+    color: #777;
+    line-height: 1.6;
+}
+
+/* History Section */
+.history-section {
+    background-color: #fdfdfd; /* Fondo rojo para la sección de historia */
+    color: #000000; /* Texto en blanco para contraste sobre el fondo rojo */
+    /* Ya tiene min-height: 100vh y flexbox de la clase general */
+}
+
+.history-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateX(-50px);
+    text-align: left; /* Restablecer alineación de texto para este contenido */
+    margin-right: 1000px;
+    margin-top: 100px;
+}
+
+.history-content h2 {
+    text-align: left;
+    margin-bottom: 30px;
+    color: #000000; /* Título en blanco sobre fondo rojo */
+}
+
+.history-content h2::after {
+    margin-left: 0;
+    background-color: #f30000; /* Línea de adorno en blanco */
+}
+
+.history-content p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #000000; /* Texto más claro */
+}
+
+.history-content p strong {
+    color: #000000; /* Texto en blanco */
+    font-weight: 700;
+}
+
+.history-image {
+    flex: 1;
+    min-width: 250px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    margin-left: 1000px;
+    margin-top: -500px;
+}
+
+.history-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.history-image .image-caption {
+    margin-top: 15px;
+    font-style: italic;
+    color: #000000; /* Texto de la leyenda más claro */
+    font-size: 0.9em;
+}
+
+/* Experiences Section */
+.experiences-section {
+    background-color: #E8DCCA; /* Fondo blanco */
+    /* Ya tiene min-height: 100vh y flexbox de la clase general */
+}
+
+.experiences-section h2 {
+    color: #333; /* Título oscuro */
+}
+
+.testimonials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1; /* Permite que la cuadrícula ocupe el espacio disponible */
+    align-items: center; /* Centra las tarjetas si hay espacio extra */
+    padding-bottom: 20px; /* Pequeño padding para no pegar al borde inferior */
+}
+
+.testimonial-card {
+    background-color: #FDFDFD; /* Blanco muy claro */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    transition: transform 0.3s ease;
+    opacity: 0; /* Para la animación */
+    transform: scale(0.9); /* Para la animación inicial */
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.testimonial-header img {
+    width: 50px; /* Tamaño un poco más grande */
+    height: 50px; /* Tamaño un poco más grande */
+    border-radius: 50%;
+    margin-right: 15px; /* Más espacio */
+    border: 3px solid #CC0000; /* Borde rojo más grueso */
+    object-fit: cover; /* Asegura que la imagen se vea bien */
+}
+
+.testimonial-header .user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-header span {
+    font-weight: bold;
+    color: #333; /* Nombre de usuario oscuro */
+    font-size: 1.1em;
+}
+
+.testimonial-header small {
+    color: #777;
+    font-size: 0.85em;
+}
+
+.testimonial-header .social-icon {
+    width: 28px; /* Icono un poco más grande */
+    height: 28px; /* Icono un poco más grande */
+    margin-left: auto;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-header .social-icon:hover {
+    transform: scale(1.1);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Thank You Section */
+.thank-you-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  overflow: hidden;
+  font-family: 'Georgia', serif;
+  color: #000000;
+  text-align: center;
+}
+
+.background-image {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://copu.media/etiqueta/colcafe/') center center/cover no-repeat;
+  filter: brightness(0.6) sepia(0.3);
+  z-index: 1;
+}
+
+.content-wrapper {
+  position: relative;
+  max-width: 600px;
+  z-index: 2;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.content-wrapper h2 {
+  font-size: 3rem;
+  margin-bottom: 0.4em;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.content-wrapper p {
+  font-size: 1.3rem;
+  margin-bottom: 1.8em;
+  font-weight: 400;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+.btn-discover {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  border: 2px solid #FFF8F0;
+  border-radius: 30px;
+  color: #FFF8F0;
+  text-decoration: none;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  display: inline-block;
+}
+
+.btn-discover:hover {
+  background-color: #FFF8F0;
+  color: #6B3E0F; /* Café oscuro */
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(15px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .content-wrapper h2 {
+    font-size: 2.2rem;
+  }
+  .content-wrapper p {
+    font-size: 1.1rem;
+  }
+}
+
+
+
+
+
+
+/* Footer */
+footer.footer {
+  background-color: #2f1f0e;
+  color: #b49f7f;
+  text-align: center;
+  padding: 20px 10px;
+  font-family: 'Georgia', serif;
+  position: relative;
+  z-index: 10;
+}
+
+footer.footer p {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+footer .social-icons a svg {
+  transition: fill 0.3s ease;
+}
+
+footer .social-icons a:hover svg {
+  fill: #997755;
+  cursor: pointer;
+}
+
+
+/* Animaciones (Keyframes) */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInSlideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Nueva animación para testimonios */
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+        filter: blur(5px); /* Un pequeño desenfoque al aparecer */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Nueva animación para la sección de agradecimiento */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px); /* Empieza más abajo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Nueva animación de pulso para la taza */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05); /* Ligeramente más grande */
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Clases de animación */
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+    animation: slideRight 0.8s ease-out forwards;
+}
+
+.animate-scale-up {
+    animation: scaleUp 0.7s ease-out forwards;
+}
+
+.animate-slide-in-up {
+    animation: slideInUp 1s ease-out forwards;
+}
+
+.animate-pulse {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+
+/* Retrasos para animaciones en secuencia */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+
+/* Media Queries para Responsividad */
+@media (max-width: 900px) {
+    .hero-section, .products-section, .history-section, .experiences-section, .thank-you-section {
+        padding: 50px 5%; /* Menos padding vertical en móviles */
+    }
+
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    nav ul {
+        display: none; /* Simplificación para móvil, se podría hacer un menú hamburguesa */
+    }
+
+    header {
+        padding: 10px 5%;
+    }
+
+    .history-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .history-content h2 {
+        text-align: center;
+    }
+    .history-content h2::after {
+        margin: 10px auto 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-content h1 {
+        font-size: 2em;
+    }
+
+    .products-section h2, .history-section h2, .experiences-section h2, .thank-you-section h2 {
+        font-size: 2em;
+    }
+
+    .product-grid, .testimonials-container {
+        grid-template-columns: 1fr;
+    }
+
+    .product-item, .testimonial-card {
+        margin-bottom: 20px;
+    }
+
+    .thank-you-content h2 {
+        font-size: 2em;
+    }
+}
+
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
