@@ -61,7 +61,7 @@ nav ul li a:hover {
     min-height: 100vh; /* Ocupa toda la altura de la pantalla */
     overflow: hidden; /* Para las animaciones */
     box-sizing: border-box; /* Incluye padding en la altura */
-    position: relative;
+    position: relative; /* Para el posicionamiento absoluto de la imagen */
 }
 
 .hero-content {
@@ -77,13 +77,13 @@ nav ul li a:hover {
 
 .hero-content h1 {
     font-size: 3em;
-    color: #fffefe; /* Título oscuro */
+    color: #fffefe; /* Título claro */
     margin-bottom: 20px;
 }
 
 .hero-content p {
     font-size: 1.2em;
-    color: #ffffff; /* Texto del párrafo más oscuro */
+    color: #ffffff; /* Texto claro */
     margin-bottom: 30px;
 }
 
@@ -104,37 +104,44 @@ nav ul li a:hover {
 }
 
 .hero-image {
-    flex: 1;
-    max-width: 10000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transform: scale(0.8); /* Retraso para que aparezca después del contenido */
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: 1;
-    opacity: 0;
-    transform: scale(0.8);
-    animation: zoomIn 0s ease-out forwards 0s;
+    pointer-events: none; /* Evita que interfiera con clicks */
+    opacity: 1; /* Para que se vea la imagen */   
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: none; /* Evita que interfiera con clicks */
-    
+    /* Elimina max-width para que no limite */
 }
 
 .hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100vw;    /* ancho total de la ventana */
+    height: 100vh;   /* alto total de la ventana */
+    object-fit: covr;
     border-radius: 0;
     box-shadow: none;
-    
+    display: block;  /* evita espacios blancos */
 }
+
+/* Animaciones (dejé las tuyas, pero ajusta si quieres) */
+@keyframes fadeInSlideRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 /* Sections generales */
 .products-section, .history-section, .experiences-section, .thank-you-section {
@@ -155,7 +162,7 @@ nav ul li a:hover {
 .products-section h2, .history-section h2, .experiences-section h2, .thank-you-section h2 {
     font-size: 2.5em;
     color: #333; /* Títulos oscuros */
-    margin-bottom: 50px;
+    margin-bottom: 5px;
     position: relative;
     display: inline-block;
 }
@@ -163,10 +170,10 @@ nav ul li a:hover {
 .products-section h2::after, .history-section h2::after, .experiences-section h2::after, .thank-you-section h2::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 100px;
     height: 4px;
     background-color: #CC0000; /* Línea de adorno en rojo */
-    margin: 10px auto 0;
+    margin: 0px auto 0;
     border-radius: 2px;
 }
 
@@ -197,7 +204,7 @@ nav ul li a:hover {
 }
 
 .product-item img {
-    max-width: 300px;
+    max-width: 250px;
     height: auto;
     margin-bottom: 20px;
 }
