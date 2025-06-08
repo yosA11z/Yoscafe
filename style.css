@@ -1,17 +1,16 @@
-/* Estilos Generales */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    color: #333; /* Color de texto general oscuro */
+    color: #333; 
+    overflow-x: hidden; 
 }
 
-/* Header y Navegación */
 header {
-    background-color: #b49f7f; /* Blanco */
-    padding: 15px 5%;
+    background-color: #b49f7f;
+    padding: 1px 1%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -21,12 +20,13 @@ header {
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 .logo img {
     height: 80px;
+    animation: pulse 2s infinite ease-in-out 0.8s; 
 }
 
 nav ul {
@@ -42,13 +42,14 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #000000; /* Rojo principal para los enlaces de navegación */
+    color: #000000; 
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease; 
 }
 
 nav ul li a:hover {
-    color: #ffffff; /* Rojo más oscuro al pasar el mouse */
+    color: #ffffff; 
+    transform: translateY(-2px); 
 }
 
 /* Hero Section */
@@ -57,11 +58,11 @@ nav ul li a:hover {
     justify-content: center;
     align-items: center;
     padding: 80px 5%;
-    background: #FFFFFF; /* Fondo blanco para la sección hero */
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
-    overflow: hidden; /* Para las animaciones */
-    box-sizing: border-box; /* Incluye padding en la altura */
-    position: relative; /* Para el posicionamiento absoluto de la imagen */
+    background: #FFFFFF; 
+    min-height: 91vh; 
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
 }
 
 .hero-content {
@@ -69,37 +70,67 @@ nav ul li a:hover {
     max-width: 600px;
     margin-right: 40px;
     opacity: 0;
-    transform: translateX(-50px);
-    animation: fadeInSlideRight 1s ease-out forwards;
+    transform: translateY(20px) scale(0.98); 
+    animation: steamEffect 1.2s ease-out forwards 0.3s; 
     position: relative;
     z-index: 2;
 }
 
 .hero-content h1 {
     font-size: 3em;
-    color: #fffefe; /* Título claro */
-    margin-bottom: 20px;
+    color: #000;
+    margin-bottom: 40px;
 }
 
 .hero-content p {
     font-size: 1.2em;
-    color: #ffffff; /* Texto claro */
+    color: #000000;
     margin-bottom: 30px;
 }
 
-.btn-primary {
+.btn-primary, .btn-discover {
     display: inline-block;
-    background-color: #b49f7f; /* Rojo principal */
+    background-color: #b49f7f;
     color: #fff;
     padding: 12px 25px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    position: relative; 
+    overflow: hidden; 
+    z-index: 1; 
 }
 
-.btn-primary:hover {
-    background-color: #990000; /* Rojo más oscuro */
+.btn-primary::before, .btn-discover::before {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4); 
+    border-radius: 50%;
+    display: block;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0;
+    z-index: 0; 
+}
+
+.btn-primary:hover::before, .btn-discover:hover::before {
+    width: 250%; 
+    height: 250%;
+    opacity: 1; 
+}
+
+.btn-primary span, .btn-discover span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-primary:hover, .btn-discover:hover {
+    background-color: #990000;
     transform: translateY(-3px);
 }
 
@@ -110,69 +141,60 @@ nav ul li a:hover {
     bottom: 0;
     left: 0;
     z-index: 1;
-    pointer-events: none; /* Evita que interfiera con clicks */
-    opacity: 1; /* Para que se vea la imagen */   
+    pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Elimina max-width para que no limite */
 }
 
 .hero-image img {
-    width: 100vw;    /* ancho total de la ventana */
-    height: 100vh;   /* alto total de la ventana */
-    object-fit: covr;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
     border-radius: 0;
     box-shadow: none;
-    display: block;  /* evita espacios blancos */
+    display: block;
+    animation: fadeInZoomBackground 1.5s ease-out forwards;
 }
 
-/* Animaciones (dejé las tuyas, pero ajusta si quieres) */
-@keyframes fadeInSlideRight {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes zoomIn {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-/* Sections generales */
 .products-section, .history-section, .experiences-section, .thank-you-section {
     padding: 80px 5%;
     text-align: center;
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
-    display: flex; /* Usar flexbox para centrar contenido verticalmente */
-    flex-direction: column; /* Apilar elementos verticalmente */
-    justify-content: center; /* Centrar verticalmente */
-    align-items: center; /* Centrar horizontalmente */
-    box-sizing: border-box; /* Incluye padding en la altura */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .products-section {
-    background-color: #E8DCCA; /* Fondo blanco/gris muy claro */
+    background-color: #E8DCCA;
 }
 
 .products-section h2, .history-section h2, .experiences-section h2, .thank-you-section h2 {
     font-size: 2.5em;
-    color: #333; /* Títulos oscuros */
+    color: #333;
     margin-bottom: 5px;
     position: relative;
     display: inline-block;
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
 }
+
+.products-section h2.visible, .history-section h2.visible, .experiences-section h2.visible, .thank-you-section h2.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .products-section h2::after, .history-section h2::after, .experiences-section h2::after, .thank-you-section h2::after {
     content: '';
     display: block;
     width: 100px;
     height: 4px;
-    background-color: #CC0000; /* Línea de adorno en rojo */
+    background-color: #CC0000;
     margin: 0px auto 0;
     border-radius: 2px;
 }
@@ -183,19 +205,23 @@ nav ul li a:hover {
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    flex-grow: 1; /* Permite que la cuadrícula ocupe el espacio disponible */
-    align-items: center; /* Centra las tarjetas si hay espacio extra */
-    padding-bottom: 20px; /* Pequeño padding para no pegar al borde inferior */
+    flex-grow: 1;
+    align-items: center;
+    padding-bottom: 20px;
 }
 
 .product-item {
-    background-color: #fff;
+    background-color: #b49f7f;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 100 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0; /* Para la animación */
-    transform: translateY(20px); /* Para la animación */
+    opacity: 0; 
+    transform: translateY(50px); 
+}
+
+.product-item.visible {
+    animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .product-item:hover {
@@ -211,52 +237,72 @@ nav ul li a:hover {
 
 .product-item h3 {
     font-size: 1.5em;
-    color: #333; /* Títulos de producto oscuros */
+    color: #3d3d3d;
     margin-bottom: 10px;
 }
 
 .product-item p {
-    color: #777;
+    color: #3b3b3b;
     line-height: 1.6;
 }
 
-/* History Section */
 .history-section {
-    background-color: #fdfdfd; /* Fondo rojo para la sección de historia */
-    color: #000000; /* Texto en blanco para contraste sobre el fondo rojo */
-    /* Ya tiene min-height: 100vh y flexbox de la clase general */
+    background-color: #fdfdfd;
+    color: #000000;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    flex-wrap: wrap; 
 }
 
 .history-content {
     flex: 1;
     min-width: 300px;
     max-width: 600px;
+    text-align: left;
+    margin: 20px; 
     opacity: 0;
-    transform: translateX(-50px);
-    text-align: left; /* Restablecer alineación de texto para este contenido */
-    margin-right: 1000px;
-    margin-top: 100px;
+    transform: translateX(-50px); 
+    transition: opacity 1s ease-out, transform 1s ease-out; 
+    margin-right: 40px; 
+    margin-top: 0; 
+    margin-left: 0; 
 }
+
+.history-content.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 
 .history-content h2 {
     text-align: left;
     margin-bottom: 30px;
-    color: #000000; /* Título en blanco sobre fondo rojo */
+    color: #000000;
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
 }
+
+.history-content h2.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .history-content h2::after {
     margin-left: 0;
-    background-color: #f30000; /* Línea de adorno en blanco */
+    background-color: #f30000;
 }
 
 .history-content p {
     font-size: 1.1em;
     line-height: 1.8;
-    color: #000000; /* Texto más claro */
+    color: #000000;
 }
 
 .history-content p strong {
-    color: #000000; /* Texto en blanco */
+    color: #000000;
     font-weight: 700;
 }
 
@@ -266,32 +312,47 @@ nav ul li a:hover {
     max-width: 500px;
     display: flex;
     flex-direction: column;
+    margin: 20px; 
     opacity: 0;
-    margin-left: 1000px;
-    margin-top: -500px;
+    transform: scale(0.9); 
+    transition: opacity 1s ease-out, transform 1s ease-out; 
+    margin-left: 40px; 
+    margin-top: 0; 
+    margin-right: 0; 
+}
+
+.history-image.visible {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .history-image img {
     max-width: 100%;
     border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .history-image .image-caption {
     margin-top: 15px;
     font-style: italic;
-    color: #000000; /* Texto de la leyenda más claro */
+    color: #000000;
     font-size: 0.9em;
 }
 
-/* Experiences Section */
 .experiences-section {
-    background-color: #E8DCCA; /* Fondo blanco */
-    /* Ya tiene min-height: 100vh y flexbox de la clase general */
+    background-color: #E8DCCA;
 }
 
 .experiences-section h2 {
-    color: #333; /* Título oscuro */
+    color: #333;
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
+.experiences-section h2.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .testimonials-container {
@@ -300,20 +361,24 @@ nav ul li a:hover {
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    flex-grow: 1; /* Permite que la cuadrícula ocupe el espacio disponible */
-    align-items: center; /* Centra las tarjetas si hay espacio extra */
-    padding-bottom: 20px; /* Pequeño padding para no pegar al borde inferior */
+    flex-grow: 1;
+    align-items: center;
+    padding-bottom: 20px;
 }
 
 .testimonial-card {
-    background-color: #FDFDFD; /* Blanco muy claro */
-    padding: 25px;
+    background-color: #FDFDFD;
+    padding: 60px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     text-align: left;
     transition: transform 0.3s ease;
-    opacity: 0; /* Para la animación */
-    transform: scale(0.9); /* Para la animación inicial */
+    opacity: 0; 
+    transform: scale(0.9); 
+}
+
+.testimonial-card.visible {
+    animation: scaleUp 0.7s ease-out forwards;
 }
 
 .testimonial-card:hover {
@@ -327,12 +392,12 @@ nav ul li a:hover {
 }
 
 .testimonial-header img {
-    width: 50px; /* Tamaño un poco más grande */
-    height: 50px; /* Tamaño un poco más grande */
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    margin-right: 15px; /* Más espacio */
-    border: 3px solid #CC0000; /* Borde rojo más grueso */
-    object-fit: cover; /* Asegura que la imagen se vea bien */
+    margin-right: 15px;
+    border: 3px solid #CC0000;
+    object-fit: cover;
 }
 
 .testimonial-header .user-info {
@@ -342,7 +407,7 @@ nav ul li a:hover {
 
 .testimonial-header span {
     font-weight: bold;
-    color: #333; /* Nombre de usuario oscuro */
+    color: #333;
     font-size: 1.1em;
 }
 
@@ -352,8 +417,8 @@ nav ul li a:hover {
 }
 
 .testimonial-header .social-icon {
-    width: 28px; /* Icono un poco más grande */
-    height: 28px; /* Icono un poco más grande */
+    width: 28px;
+    height: 28px;
     margin-left: auto;
     border: none;
     transition: transform 0.3s ease;
@@ -369,121 +434,117 @@ nav ul li a:hover {
     line-height: 1.6;
 }
 
-/* Thank You Section */
 .thank-you-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  overflow: hidden;
-  font-family: 'Georgia', serif;
-  color: #000000;
-  text-align: center;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+    color: #ffffff;
+    text-align: center;
 }
 
-.background-image {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://copu.media/etiqueta/colcafe/') center center/cover no-repeat;
-  filter: brightness(0.6) sepia(0.3);
-  z-index: 1;
+#videoFondo {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; 
+    filter: brightness(0.7); 
 }
 
 .content-wrapper {
-  position: relative;
-  max-width: 600px;
-  z-index: 2;
-  animation: fadeIn 1.2s ease forwards;
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+    opacity: 0; 
+    transform: translateY(50px); 
+}
+
+.content-wrapper.visible {
+    animation: slideInUp 1s ease-out forwards;
 }
 
 .content-wrapper h2 {
-  font-size: 3rem;
-  margin-bottom: 0.4em;
-  font-weight: 700;
-  text-shadow: 0 0 8px rgba(0,0,0,0.4);
+    font-size: 3rem;
+    margin-bottom: 0.4em;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(0,0,0,0.4);
+    opacity: 1; 
+    transform: translateY(0); 
+    transition: none; 
 }
 
 .content-wrapper p {
-  font-size: 1.3rem;
-  margin-bottom: 1.8em;
-  font-weight: 400;
-  font-family: 'Arial', sans-serif;
-  text-shadow: 0 0 6px rgba(0,0,0,0.3);
+    font-size: 1.3rem;
+    margin-bottom: 1.8em;
+    font-weight: 400;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 0 0 6px rgba(0,0,0,0.3);
 }
 
 .btn-discover {
-  font-family: 'Arial', sans-serif;
-  font-size: 1.1rem;
-  padding: 12px 30px;
-  border: 2px solid #FFF8F0;
-  border-radius: 30px;
-  color: #FFF8F0;
-  text-decoration: none;
-  transition: background-color 0.4s ease, color 0.4s ease;
-  display: inline-block;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    border: 2px solid #FFF8F0;
+    border-radius: 30px;
+    color: #FFF8F0;
+    text-decoration: none;
+    background-color: transparent; 
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.3s ease;
 }
 
 .btn-discover:hover {
-  background-color: #FFF8F0;
-  color: #6B3E0F; /* Café oscuro */
+    background-color: #FFF8F0;
+    color: #6B3E0F; 
+    transform: translateY(-3px);
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(15px);}
-  to {opacity: 1; transform: translateY(0);}
+#graciasfinal {
+    color: white;
+    background-color: rgba(248, 247, 244, 0.288);
+    border-radius: 10px;
+    padding: 10px 20px; 
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .content-wrapper h2 {
-    font-size: 2.2rem;
-  }
-  .content-wrapper p {
-    font-size: 1.1rem;
-  }
-}
-
-
-
-
-
-
-/* Footer */
 footer.footer {
-  background-color: #2f1f0e;
-  color: #b49f7f;
-  text-align: center;
-  padding: 20px 10px;
-  font-family: 'Georgia', serif;
-  position: relative;
-  z-index: 10;
+    background-color: #3b362e;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 10px;
+    font-family: 'Georgia', serif;
+    position: relative;
+    z-index: 10;
 }
 
 footer.footer p {
-  margin: 0 0 10px 0;
-  font-size: 0.9rem;
-  font-weight: 500;
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 footer .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 footer .social-icons a svg {
-  transition: fill 0.3s ease;
+    transition: fill 0.3s ease, transform 0.3s ease; 
 }
 
 footer .social-icons a:hover svg {
-  fill: #997755;
-  cursor: pointer;
+    fill: #000000;
+    cursor: pointer;
+    transform: translateY(-3px) scale(1.1); 
 }
 
-
-/* Animaciones (Keyframes) */
 @keyframes slideDown {
     from {
         transform: translateY(-100%);
@@ -495,32 +556,37 @@ footer .social-icons a:hover svg {
     }
 }
 
-@keyframes fadeInSlideRight {
-    from {
+@keyframes steamEffect {
+    0% {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateY(20px) scale(0.98);
+        filter: blur(5px);
     }
-    to {
+    50% {
+        filter: blur(2px);
+    }
+    100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0) scale(1);
+        filter: blur(0);
     }
 }
 
-@keyframes zoomIn {
+@keyframes fadeInZoomBackground {
     from {
         opacity: 0;
-        transform: scale(0.8);
+        transform: scale(1.1);
     }
     to {
-        opacity: 1;
+        opacity: 1; 
         transform: scale(1);
     }
 }
 
-@keyframes fadeIn {
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(50px);
     }
     to {
         opacity: 1;
@@ -539,12 +605,22 @@ footer .social-icons a:hover svg {
     }
 }
 
-/* Nueva animación para testimonios */
+@keyframes fadeInZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 @keyframes scaleUp {
     from {
         opacity: 0;
         transform: scale(0.9);
-        filter: blur(5px); /* Un pequeño desenfoque al aparecer */
+        filter: blur(5px); 
     }
     to {
         opacity: 1;
@@ -553,11 +629,10 @@ footer .social-icons a:hover svg {
     }
 }
 
-/* Nueva animación para la sección de agradecimiento */
 @keyframes slideInUp {
     from {
         opacity: 0;
-        transform: translateY(50px); /* Empieza más abajo */
+        transform: translateY(50px); 
     }
     to {
         opacity: 1;
@@ -565,55 +640,28 @@ footer .social-icons a:hover svg {
     }
 }
 
-/* Nueva animación de pulso para la taza */
 @keyframes pulse {
     0% {
         transform: scale(1);
-        opacity: 1;
     }
     50% {
-        transform: scale(1.05); /* Ligeramente más grande */
-        opacity: 0.9;
+        transform: scale(1.05); 
     }
     100% {
         transform: scale(1);
-        opacity: 1;
     }
 }
 
 
-/* Clases de animación */
-.animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
+
+.animate-visible {
+    
 }
 
-.animate-slide-right {
-    animation: slideRight 0.8s ease-out forwards;
-}
-
-.animate-scale-up {
-    animation: scaleUp 0.7s ease-out forwards;
-}
-
-.animate-slide-in-up {
-    animation: slideInUp 1s ease-out forwards;
-}
-
-.animate-pulse {
-    animation: pulse 1.5s infinite ease-in-out;
-}
-
-
-/* Retrasos para animaciones en secuencia */
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-.delay-4 { animation-delay: 0.8s; }
-
-/* Media Queries para Responsividad */
+/* Responsive */
 @media (max-width: 900px) {
     .hero-section, .products-section, .history-section, .experiences-section, .thank-you-section {
-        padding: 50px 5%; /* Menos padding vertical en móviles */
+        padding: 50px 5%;
     }
 
     .hero-section {
@@ -631,7 +679,11 @@ footer .social-icons a:hover svg {
     }
 
     nav ul {
-        display: none; /* Simplificación para móvil, se podría hacer un menú hamburguesa */
+        display: none;
+    }
+
+    header nav {
+        justify-content: center; 
     }
 
     header {
@@ -641,6 +693,10 @@ footer .social-icons a:hover svg {
     .history-section {
         flex-direction: column;
         text-align: center;
+    }
+
+    .history-content, .history-image {
+        margin: 20px 0; 
     }
 
     .history-content h2 {
@@ -666,15 +722,209 @@ footer .social-icons a:hover svg {
 
     .product-item, .testimonial-card {
         margin-bottom: 20px;
+        padding: 30px; 
     }
 
-    .thank-you-content h2 {
-        font-size: 2em;
+    .thank-you-section .content-wrapper h2 {
+        font-size: 2.2rem;
+    }
+    .thank-you-section .content-wrapper p {
+        font-size: 1.1rem;
     }
 }
 
 .lobster-regular {
-  font-family: "Lobster", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Lobster", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
+
+.history-section {
+    background-color: #fdfdfd;
+    color: #000000;
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    padding: 80px 5%; 
+    text-align: left; 
+}
+
+.history-content {
+    flex: 1; 
+    min-width: 300px; 
+    max-width: 600px; 
+    margin-right: 40px; 
+    opacity: 0; 
+    transform: translateX(-50px); 
+    transition: opacity 1s ease-out, transform 1s ease-out; 
+    text-align: left; 
+}
+
+
+.history-content.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.history-content h2 {
+    text-align: left; 
+    margin-bottom: 30px;
+    color: #000000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.history-content h2.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.history-content h2::after {
+    margin-left: 0; 
+    background-color: #f30000;
+}
+
+.history-content p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #000000;
+    text-align: left; 
+}
+
+.history-content p strong {
+    color: #000000;
+    font-weight: 700;
+}
+
+.history-image {
+    flex: 1; 
+    min-width: 250px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px; 
+    opacity: 0; 
+    transform: scale(0.9); 
+    transition: opacity 1s ease-out, transform 1s ease-out; 
+    text-align: center; 
+}
+
+
+.history-image.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.history-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.history-image .image-caption {
+    margin-top: 15px;
+    font-style: italic;
+    color: #000000;
+    font-size: 0.9em;
+}
+
+
+
+@media (max-width: 900px) {
+    
+
+    .history-section {
+        flex-direction: column; 
+        text-align: center; 
+    }
+
+    .history-content {
+        margin-right: 0; 
+        margin-bottom: 40px; 
+        text-align: center; 
+    }
+
+    .history-content h2 {
+        text-align: center; 
+    }
+
+    .history-content h2::after {
+        margin: 10px auto 0; 
+    }
+
+    .history-content p {
+        text-align: center; 
+    }
+
+    .history-image {
+        margin-left: 0; 
+        margin-top: 20px; 
+    }
+}
+
+
+header {
+    background-color: #b49f7f;
+    padding: 1px 1%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    height: 80px;
+    animation: pulse 2s infinite ease-in-out 0.8s;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000000; 
+    font-weight: 500;
+    position: relative; 
+    padding-bottom: 5px; 
+    transition: color 0.3s ease, transform 0.3s ease; 
+}
+
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; 
+    width: 0; 
+    height: 3px; 
+    background-color: #CC0000; 
+    transition: width 0.3s ease-out; 
+}
+
+nav ul li a:hover {
+    color: #ffffff; 
+    transform: translateY(-3px); 
+}
+
+nav ul li a:hover::after {
+    width: 100%; 
+}
+
