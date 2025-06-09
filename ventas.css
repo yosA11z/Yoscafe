@@ -185,7 +185,7 @@ a:hover {
 /* --- Sección Introductoria con Parallax (Hero) --- */
 .intro-section {
     position: relative;
-    height: 40vh; /* Ajuste a un porcentaje de la altura de la ventana */
+    height: 23vh; /* Ajuste a un porcentaje de la altura de la ventana */
     width: 100%; /* Ocupa el 100% del ancho */
     display: flex;
     flex-direction: column;
