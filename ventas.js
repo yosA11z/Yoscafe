@@ -175,3 +175,15 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartDisplay();
     filterProducts();
 });
+
+
+
+
+
+
+
+
+
+
+
+
